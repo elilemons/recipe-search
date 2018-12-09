@@ -1,7 +1,17 @@
-<ul ng-if="ctrl.listItems && ctrl.listItems.length > 0">
-  <li ng-repeat="item in ctrl.listItems track by $index">
-    {{item}}
-  </li>
-</ul>
-
 <p ng-if="!ctrl.listItems">No items were found.</p>
+<div ng-repeat="item in ctrl.listItems track by $index">
+  <h2>{{item.recipe.label}}</h2>
+  <p>
+    Calories: {{item.recipe.calories}}
+  </p>
+  <p>
+    Is item bookmarked? {{item.bookmarked ? 'Y' : 'N'}}
+  </p>
+  <h3>Tags</h3>
+  <ul>
+    <li ng-repeat="healthLabel in item.recipe.healthLabels">
+      {{healthLabel}}
+    </li>
+  </ul>
+</div>
+<hr>

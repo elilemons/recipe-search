@@ -12,4 +12,5 @@
   <strong>Your Query:</strong> {{ctrl.searchText}}
 </div>
 <list 
+  ng-if="ctrl.searchText"
   list-items="ctrl.searchResults"></list>
