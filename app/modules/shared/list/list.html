@@ -1,0 +1,7 @@
+<ul ng-if="ctrl.listItems && ctrl.listItems.length > 0">
+  <li ng-repeat="item in ctrl.listItems track by $index">
+    {{item}}
+  </li>
+</ul>
+
+<p ng-if="!ctrl.listItems">No items were found.</p>

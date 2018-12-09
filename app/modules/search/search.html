@@ -1,0 +1,15 @@
+<p>This is the partial for the search.</p>
+<input
+  id="searchText"
+  ng-model="ctrl.searchText"
+/>
+<button
+  type="submit"
+  ng-click="ctrl.search(ctrl.searchText)">
+  Search
+</button>
+<div>
+  <strong>Your Query:</strong> {{ctrl.searchText}}
+</div>
+<list 
+  list-items="ctrl.searchResults"></list>
