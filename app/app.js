@@ -1,14 +1,17 @@
-'use strict';
+import './modules/favorites/favorites.module.js';
+import './modules/shared/shared.module.js';
+import './modules/search/search.module.js';
 
 // Declare app level module which depends on views, and core components
-angular.module('myApp', [
+angular.module('recipeSearch', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'search',
+  'favorites',
+  'shared',
+  'recipeSearch.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/search'});
 }]);
