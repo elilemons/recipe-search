@@ -1,11 +1,16 @@
-<p ng-if="!ctrl.listItems">No items were found.</p>
-<div ng-repeat="item in ctrl.listItems track by $index">
-  <h2>{{item.recipe.label}}</h2>
+<p ng-if="ctrl.listItems === undefined || ctrl.listItems.length === 0">No items were found.</p>
+<div ng-if="ctrl.listItems" ng-repeat="item in ctrl.listItems track by $index">
+  <h2>
+    <a ng-href="{{item.recipe.url}}" target="_blank">
+      {{item.recipe.label}}
+    </a>
+  </h2>
+  <a ng-href="{{item.recipe.url}}" target="_blank" style="text-align: center;">
+    <img 
+      ng-src="{{item.recipe.image}}" />
+  </a>
   <p>
     Calories: {{item.recipe.calories}}
-  </p>
-  <p>
-    Is item bookmarked? {{item.bookmarked ? 'Y' : 'N'}}
   </p>
   <h3>Tags</h3>
   <ul>
@@ -13,5 +18,24 @@
       {{healthLabel}}
     </li>
   </ul>
+  <button 
+    type="button" 
+    ng-if="ctrl.listItems"
+    ng-click="ctrl.showDetail = !ctrl.showDetail">
+    Show {{ctrl.showDetail ? 'More' : 'Less'}}
+  </button>
+  <button
+    type="button"
+    style="background: pink"
+    ng-click="ctrl.onFavoriteClick(item)">
+  {{item.bookmarked ? 'Remove from' : 'Add to'}} Favorites
+  </button>
+  <div ng-if="ctrl.showDetail" class="ingredients">
+      <ul>
+        <li ng-repeat="ingredient in item.recipe.ingredients">
+          {{ingredient.text}}
+        </li>
+      </ul>
+  </div>
 </div>
-<hr>
+<hr />

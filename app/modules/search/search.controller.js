@@ -1,6 +1,8 @@
 class SearchController {
   constructor(EdamamService) { 
     this.EdamamService = EdamamService;
+
+    this.search(this.searchText, this.searchDietaryRestrictions, this.searchCalories);
   }
 
   search(searchText, searchDietaryRestrictions, searchCalories) {

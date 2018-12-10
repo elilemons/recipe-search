@@ -41,7 +41,6 @@ class EdamamService {
           }
         })
       } else {
-        console.log('not an array');
         url += `&health=${options.searchDietaryRestrictions}`;
       }
     }
@@ -50,7 +49,6 @@ class EdamamService {
       url += `&calories=${options.searchCalories}`;
     }
 
-    console.log('url after option process', {url});
     return this.$http({
       method: 'GET',
       url: url

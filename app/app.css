@@ -3,7 +3,7 @@
 body {
   margin: 0% auto;
   width: 90%;
-  max-width: 750px;
+  max-width: 250px;
 }
 .menu {
   list-style: none;
@@ -53,4 +53,22 @@ button[type=button] {
   width: 100%;
   background: darkturquoise;
   color: white;
+}
+
+img {
+  display: block;
+  width: 90%;
+  max-width: 250px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+a {
+  color: mediumvioletred;
+}
+
+.ingredients ul{
+  background: lightgoldenrodyellow; 
+  padding: 5%; 
+  list-style: none;
 }
