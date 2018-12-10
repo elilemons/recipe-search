@@ -1,49 +1,31 @@
 class SearchController {
-  constructor($window,
-    EdamamService) { 
-    this.$window = $window;
+  constructor(EdamamService) { 
     this.EdamamService = EdamamService;
   }
 
-  search(searchText, searchDietaryRestrictions) {
-    this.isLoading = true;
+  search(searchText, searchDietaryRestrictions, searchCalories) {
     if (typeof searchText === 'undefined' || searchText.length < 1) { return; }
-   
-    if (!this.hasLocalStorage(searchText)) {
-      this.EdamamService.search({
-        searchText: searchText, 
-        searchDietaryRestrictions: searchDietaryRestrictions}).
-      then((response) => {
-        this.searchResults = response.data.hits;
-        this.$window.localStorage.setItem('searchResults', JSON.stringify(this.searchResults));
-      }).
-      catch(error => {
-        console.error('Error:', error);
-      }).
-      finally(() => {
-        this.isLoading = false;
-      });
-    }
+
+    this.EdamamService.search({
+      searchText: searchText, 
+      searchDietaryRestrictions: searchDietaryRestrictions,
+      searchCalories: searchCalories}).
+    then((response) => {
+      this.searchResults = response.data.hits;
+    }).
+    catch(error => {
+      console.error('Error:', error);
+    });
   }
 
-  hasLocalStorage(searchText) {
-    let prevSearchText = this.$window.localStorage.getItem('searchText'),
-    prevSearchResults = JSON.parse(this.$window.localStorage.getItem('searchResults'));
-
-    if (typeof prevSearchText === 'undefined' || prevSearchText === null) {
-      this.$window.localStorage.setItem('searchText', searchText);
-    } else {
-      if (prevSearchText === searchText) {
-        this.searchResults = prevSearchResults;
-        return true;
-      }
-      this.$window.localStorage.setItem('searchText', searchText);
-    }
-    return false;
+  clear() {
+    this.searchDietaryRestrictions = undefined;
+    this.searchText = undefined;
+    this.searchCalories = undefined;
+    this.searchResults = undefined;
   }
 }
 
-SearchController.$inject = ['$window', 
-  'EdamamService'];
+SearchController.$inject = ['EdamamService'];
 
 export default SearchController;

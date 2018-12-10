@@ -1,5 +1,10 @@
 /* app css stylesheet */
 
+body {
+  margin: 0% auto;
+  width: 90%;
+  max-width: 750px;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -22,4 +27,30 @@
 .menu > li + li:before {
   content: "|";
   padding-right: 0.3em;
+}
+
+label {
+  color: palevioletred;
+  text-transform: uppercase;
+  font-size: .8em;
+  font-weight: 700;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+}
+
+button[type=submit] {
+  display: block;
+  width: 100%;
+  background: darkseagreen;
+  color: white;
+}
+
+button[type=button] {
+  display: block;
+  width: 100%;
+  background: darkturquoise;
+  color: white;
 }

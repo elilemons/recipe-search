@@ -7,6 +7,18 @@ class EdamamService {
     this.app_id = this.env.app_id;
     this.app_key = this.env.app_key;
     this.API = this.env.API;
+    this.filters = {
+      BALANCED: 'balanced', 
+      HIGH_PROTEIN: 'high-protein', 
+      LOW_FAT: 'low-fat', 
+      LOW_CARB: 'low-carb', 
+      VEGAN: 'vegan', 
+      VEGETARIAN: 'vegetarian', 
+      SUGAR_CONSCIOUS: 'sugar-conscious', 
+      PEANUT_FREE: 'peanut-free', 
+      TREE_NUT_FREE: 'tree-nut-free', 
+      ALCOHOL_FREE: 'alcohol-free'
+    };
   }
 
   /**
@@ -14,14 +26,31 @@ class EdamamService {
    * @param {Object} options 
    * @param {String} options.searchText
    * @param {String} options.searchDietaryRestrictions
+   * @param {String} options.searchCalories
    */
   search(options) {
     let url = `${this.API}?q=${options.searchText}&app_id=${this.app_id}&app_key=${this.app_key}`;
 
-    // if (options.searchDietaryRestrictions) {
-    //   url += `&health=${options.searchDietaryRestrictions}`;
-    // }
-    console.log({url});
+    if (options.searchDietaryRestrictions) {
+      if (Array.isArray(options.searchDietaryRestrictions)) {
+        options.searchDietaryRestrictions.forEach(item => {
+          if (item.indexOf('high') > -1 || item.indexOf('low') > -1 || item.indexOf('balanced') > -1) {
+            url += `&diet=${item}`;
+          } else {
+            url += `&health=${item}`;
+          }
+        })
+      } else {
+        console.log('not an array');
+        url += `&health=${options.searchDietaryRestrictions}`;
+      }
+    }
+
+    if (options.searchCalories) {
+      url += `&calories=${options.searchCalories}`;
+    }
+
+    console.log('url after option process', {url});
     return this.$http({
       method: 'GET',
       url: url
