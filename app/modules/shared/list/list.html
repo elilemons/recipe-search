@@ -10,7 +10,7 @@
       ng-src="{{item.recipe.image}}" />
   </a>
   <p>
-    Calories: {{item.recipe.calories}}
+    Calories (per Serving): {{item.recipe.calories / item.recipe.yield | number : 0}}
   </p>
   <h3>Tags</h3>
   <ul>

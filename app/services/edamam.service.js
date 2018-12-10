@@ -46,7 +46,7 @@ class EdamamService {
     }
 
     if (options.searchCalories) {
-      url += `&calories=${options.searchCalories}`;
+      url += `&calories=1-${options.searchCalories}`;
     }
 
     return this.$http({
