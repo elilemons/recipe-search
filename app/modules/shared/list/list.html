@@ -22,7 +22,7 @@
     type="button" 
     ng-if="ctrl.listItems"
     ng-click="ctrl.showDetail = !ctrl.showDetail">
-    Show {{ctrl.showDetail ? 'More' : 'Less'}}
+    Show {{!ctrl.showDetail ? 'More' : 'Less'}}
   </button>
   <button
     type="button"
