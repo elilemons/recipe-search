@@ -1,7 +1,7 @@
 class ListController {
   constructor(FavoritesService) {
     this.FavoritesService = FavoritesService;
-    this.showDetail = true; // for testing
+    this.showDetail = false;
   }
 
   onFavoriteClick(item) {
