@@ -5,12 +5,15 @@ class SearchController {
     this.EdamamService = EdamamService;
   }
 
-  search(searchText) {
+  search(searchText, searchDietaryRestrictions) {
     this.isLoading = true;
     if (typeof searchText === 'undefined' || searchText.length < 1) { return; }
    
     if (!this.hasLocalStorage(searchText)) {
-      this.EdamamService.search({searchText: searchText}).then((response) => {
+      this.EdamamService.search({
+        searchText: searchText, 
+        searchDietaryRestrictions: searchDietaryRestrictions}).
+      then((response) => {
         this.searchResults = response.data.hits;
         this.$window.localStorage.setItem('searchResults', JSON.stringify(this.searchResults));
       }).

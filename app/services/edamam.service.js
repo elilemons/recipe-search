@@ -13,9 +13,14 @@ class EdamamService {
    * Searches Edamam using API
    * @param {Object} options 
    * @param {String} options.searchText
+   * @param {String} options.searchDietaryRestrictions
    */
   search(options) {
     let url = `${this.API}?q=${options.searchText}&app_id=${this.app_id}&app_key=${this.app_key}`;
+
+    // if (options.searchDietaryRestrictions) {
+    //   url += `&health=${options.searchDietaryRestrictions}`;
+    // }
     console.log({url});
     return this.$http({
       method: 'GET',

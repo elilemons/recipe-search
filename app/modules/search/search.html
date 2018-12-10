@@ -1,16 +1,37 @@
 <p>This is the partial for the search.</p>
-<input
-  id="searchText"
-  ng-model="ctrl.searchText"
-/>
-<button
-  type="submit"
-  ng-click="ctrl.search(ctrl.searchText)">
-  Search
-</button>
+<!-- <form>
+  <label
+    for="dietaryRestrictions">
+    Dietary Restrictions (like-this) (only 1)
+  </label>
+  <br/>
+  <input
+    id="dietaryRestrictions"
+    ng-model="ctrl.searchDietaryRestrictions"
+  /> -->
+  <br/>
+  <br/>
+  <label
+    for="searchText"
+  >
+  Search Text
+  </label>
+  <br/>
+  <input
+    id="searchText"
+    ng-model="ctrl.searchText"
+  />
+  <br/>
+  <button
+    type="submit"
+    ng-click="ctrl.search(ctrl.searchText, ctrl.searchDietaryRestrictions)">
+    Search
+  </button>
+</form>
+
 <div>
   <strong>Your Query:</strong> {{ctrl.searchText}}
 </div>
 <list 
-  ng-if="ctrl.searchText"
+  ng-if="ctrl.searchResults"
   list-items="ctrl.searchResults"></list>
