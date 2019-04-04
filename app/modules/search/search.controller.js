@@ -1,13 +1,16 @@
 class SearchController {
-  constructor(EdamamService) { 
-    this.EdamamService = EdamamService;
+  // constructor(EdamamService) {
+  //   this.EdamamService = EdamamService;
+  // } // Uncomment when you have an API KEY
+  constructor () {
+    this.EdamamService = {};
   }
 
   search(searchText, searchDietaryRestrictions, searchCalories) {
     if (typeof searchText === 'undefined' || searchText.length < 1) { return; }
 
     this.EdamamService.search({
-      searchText: searchText, 
+      searchText: searchText,
       searchDietaryRestrictions: searchDietaryRestrictions,
       searchCalories: searchCalories}).
     then((response) => {
@@ -26,6 +29,7 @@ class SearchController {
   }
 }
 
-SearchController.$inject = ['EdamamService'];
+// SearchController.$inject = ['EdamamService'];
+SearchController.$inject = [];
 
 export default SearchController;

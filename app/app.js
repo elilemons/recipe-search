@@ -10,7 +10,6 @@ angular.module('recipeSearch', [
   'search',
   'favorites',
   'shared',
-  'recipeSearch.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
